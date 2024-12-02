@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://4rv5y5ad1m61"]
+
+[ext_resource type="Script" path="res://Scripts/Tree.gd" id="1_hady1"]
+[ext_resource type="PackedScene" uid="uid://bllxov6u065v1" path="res://Scenes/Skill.tscn" id="2_yqfjb"]
+[ext_resource type="Texture2D" uid="uid://dc3wk1u514iog" path="res://Resources/Sprites/Skills/Normal/upStart.png" id="3_cut4d"]
+[ext_resource type="Texture2D" uid="uid://de280145lobix" path="res://Resources/Sprites/Skills/Locked/upStart.png" id="4_5ha11"]
+
+[node name="Skill Tree" type="Node2D"]
+script = ExtResource("1_hady1")
+
+[node name="BG" type="Panel" parent="."]
+offset_top = -1080.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Control" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 10.0
+
+[node name="Control2" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1070.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 1
+
+[node name="Start" parent="." instance=ExtResource("2_yqfjb")]
+offset_left = 940.0
+offset_top = 514.0
+offset_right = 972.0
+offset_bottom = 546.0
+texture_normal = ExtResource("4_5ha11")
+texture_pressed = ExtResource("3_cut4d")
+texture_disabled = ExtResource("3_cut4d")
+stretch_mode = 5
+
+[connection signal="gui_input" from="Camera2D/Control" to="." method="_on_control_gui_input"]
+[connection signal="gui_input" from="Camera2D/Control2" to="." method="_on_control_2_gui_input"]
