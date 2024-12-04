@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgy7st1hukwkw"]
+
+[ext_resource type="Script" path="res://Scripts/Save-Load.gd" id="1_2t30w"]
+[ext_resource type="Theme" uid="uid://dchsfnmpldp4" path="res://Resources/Themes/Menu_Button_Bold.tres" id="2_epyqb"]
+
+[node name="Save-Load" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2t30w")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="File 1" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_epyqb")
+text = "File 1"
+
+[node name="File 2" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_epyqb")
+text = "File 2"
+
+[node name="File 3" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_epyqb")
+text = "File 3"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/File 1" to="." method="_on_file_1_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/File 2" to="." method="_on_file_2_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/File 3" to="." method="_on_file_3_pressed"]
