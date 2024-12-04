@@ -1,0 +1,150 @@
+[gd_scene load_steps=20 format=3 uid="uid://4rv5y5ad1m61"]
+
+[ext_resource type="Script" path="res://Scripts/Tree.gd" id="1_hady1"]
+[ext_resource type="Theme" path="res://Resources/Themes/Menu_Button_Bold.tres" id="2_2xcs7"]
+[ext_resource type="PackedScene" uid="uid://bllxov6u065v1" path="res://Scenes/Skill.tscn" id="2_yqfjb"]
+[ext_resource type="Texture2D" uid="uid://dc3wk1u514iog" path="res://Resources/Sprites/Skills/Normal/upStart.png" id="3_cut4d"]
+[ext_resource type="Theme" uid="uid://lq11vreljnaq" path="res://Resources/Themes/Menu_Button.tres" id="3_vvf66"]
+[ext_resource type="Texture2D" uid="uid://de280145lobix" path="res://Resources/Sprites/Skills/Locked/upStart.png" id="4_5ha11"]
+[ext_resource type="Texture2D" uid="uid://bipgdj1wo6vih" path="res://Resources/Sprites/Skills/Locked/Beserker.png" id="6_wg08x"]
+[ext_resource type="Texture2D" uid="uid://c7v4o7ng56bab" path="res://Resources/Sprites/Skills/Normal/Beserker.png" id="7_5gfbq"]
+[ext_resource type="Texture2D" uid="uid://dm2cxdg8m8cdr" path="res://Resources/Sprites/Skills/Locked/Sorcerer.png" id="8_4mq58"]
+[ext_resource type="Texture2D" uid="uid://dbw7mm806i6k2" path="res://Resources/Sprites/Skills/Normal/Sorcerer.png" id="9_hggxu"]
+[ext_resource type="Texture2D" uid="uid://cv6534onbvraq" path="res://Resources/Sprites/Skills/Locked/Alchemist.png" id="10_335kh"]
+[ext_resource type="Texture2D" uid="uid://b60r2rlp1ufy2" path="res://Resources/Sprites/Skills/Normal/Druid.png" id="11_fmwso"]
+[ext_resource type="Texture2D" uid="uid://ch0bjlelxt67c" path="res://Resources/Sprites/Skills/Normal/Alchemist.png" id="11_lo0n5"]
+[ext_resource type="Texture2D" uid="uid://dj6voh6g3g77p" path="res://Resources/Sprites/Skills/Locked/Druid.png" id="11_q7f7e"]
+[ext_resource type="Texture2D" uid="uid://dpyo7x5yk5ixa" path="res://Resources/Sprites/Skills/Locked/Engineer.png" id="11_vusuq"]
+[ext_resource type="Texture2D" uid="uid://cgw1xfvj0y0aw" path="res://Resources/Sprites/Skills/Normal/Engineer.png" id="12_rsqxg"]
+[ext_resource type="Texture2D" uid="uid://2eauf4btiwfr" path="res://Resources/Sprites/Skills/Locked/Ranger.png" id="13_5eh7q"]
+[ext_resource type="Texture2D" uid="uid://dj2ad1lfm6rvs" path="res://Resources/Sprites/Skills/Normal/Ranger.png" id="14_pl0tk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_og3k1"]
+size = Vector2(10, 10)
+
+[node name="Skill Tree" type="Node2D"]
+script = ExtResource("1_hady1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Camera2D"]
+z_index = 1
+offset_left = 500.0
+offset_right = 1420.0
+offset_bottom = 150.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/PanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Camera2D/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme = ExtResource("2_2xcs7")
+text = "Hover over a upgrade for details."
+horizontal_alignment = 1
+
+[node name="Warning" type="Label" parent="Camera2D/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vvf66")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Camera2D/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vvf66")
+horizontal_alignment = 1
+
+[node name="Start" parent="." instance=ExtResource("2_yqfjb")]
+offset_left = 896.0
+offset_top = 500.0
+offset_right = 928.0
+offset_bottom = 532.0
+texture_normal = ExtResource("4_5ha11")
+texture_pressed = ExtResource("3_cut4d")
+texture_disabled = ExtResource("3_cut4d")
+stretch_mode = 5
+description = "Get ready for an adventure!"
+
+[node name="Beserker" parent="." groups=["Classes"] instance=ExtResource("2_yqfjb")]
+offset_left = 640.0
+offset_top = 500.0
+offset_right = 672.0
+offset_bottom = 532.0
+texture_normal = ExtResource("6_wg08x")
+texture_pressed = ExtResource("7_5gfbq")
+texture_disabled = ExtResource("7_5gfbq")
+description = "Beserkers use strong melee weapons and brute strength to defeat enemies! "
+type = 1
+
+[node name="Sorcerer" parent="." groups=["Classes"] instance=ExtResource("2_yqfjb")]
+offset_left = 1152.0
+offset_top = 500.0
+offset_right = 1184.0
+offset_bottom = 532.0
+texture_normal = ExtResource("8_4mq58")
+texture_pressed = ExtResource("9_hggxu")
+texture_disabled = ExtResource("9_hggxu")
+description = "Sorcerers use magic to attack enemies!"
+type = 1
+
+[node name="Alchemist" parent="." groups=["Classes"] instance=ExtResource("2_yqfjb")]
+offset_left = 1024.0
+offset_top = 308.0
+offset_right = 1056.0
+offset_bottom = 340.0
+texture_normal = ExtResource("10_335kh")
+texture_pressed = ExtResource("11_lo0n5")
+texture_disabled = ExtResource("11_lo0n5")
+description = "Alchemist use potions to buff themselves and debuff enemies!"
+type = 1
+
+[node name="Druid" parent="." groups=["Classes"] instance=ExtResource("2_yqfjb")]
+offset_left = 768.0
+offset_top = 308.0
+offset_right = 800.0
+offset_bottom = 340.0
+texture_normal = ExtResource("11_q7f7e")
+texture_pressed = ExtResource("11_fmwso")
+texture_disabled = ExtResource("11_fmwso")
+description = "Druids use their summons to fight enemies!"
+type = 1
+
+[node name="Engineer" parent="." groups=["Classes"] instance=ExtResource("2_yqfjb")]
+offset_left = 768.0
+offset_top = 692.0
+offset_right = 800.0
+offset_bottom = 724.0
+texture_normal = ExtResource("11_vusuq")
+texture_pressed = ExtResource("12_rsqxg")
+texture_disabled = ExtResource("12_rsqxg")
+description = "Engineers use advanced technology to defeat enemies!"
+type = 1
+
+[node name="Ranger" parent="." groups=["Classes"] instance=ExtResource("2_yqfjb")]
+offset_left = 1024.0
+offset_top = 692.0
+offset_right = 1056.0
+offset_bottom = 724.0
+texture_normal = ExtResource("13_5eh7q")
+texture_pressed = ExtResource("14_pl0tk")
+texture_disabled = ExtResource("14_pl0tk")
+description = "Rangers have long range guns and bows to fight enemie!s"
+type = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_og3k1")
+
+[connection signal="toggled" from="Start" to="." method="_on_start_unlocked"]
+[connection signal="toggled" from="Beserker" to="." method="_on_beserker_unlocked"]
+[connection signal="toggled" from="Sorcerer" to="." method="_on_sorcerer_unlocked"]
+[connection signal="toggled" from="Alchemist" to="." method="_on_alchemist_unlocked"]
+[connection signal="toggled" from="Druid" to="." method="_on_druid_unlocked"]
+[connection signal="toggled" from="Engineer" to="." method="_on_engineer_unlocked"]
+[connection signal="toggled" from="Ranger" to="." method="_on_ranger_unlocked"]
+[connection signal="area_entered" from="Area2D" to="." method="_cursor_hover"]
+[connection signal="area_exited" from="Area2D" to="." method="_cursor_unhover"]
