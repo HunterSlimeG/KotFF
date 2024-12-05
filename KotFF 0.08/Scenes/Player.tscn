@@ -1,0 +1,160 @@
+[gd_scene load_steps=19 format=3 uid="uid://bfl0psaqjjwqe"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_yjgty"]
+[ext_resource type="Texture2D" uid="uid://b148m1bjn625e" path="res://Resources/Sprites/healthEmpty.png" id="3_4jo3l"]
+[ext_resource type="Texture2D" uid="uid://icaawygsb1vf" path="res://Resources/Sprites/healthFull.png" id="4_mfmvr"]
+[ext_resource type="Theme" uid="uid://dchsfnmpldp4" path="res://Resources/Themes/Menu_Button_Bold.tres" id="5_hlbwu"]
+[ext_resource type="Texture2D" uid="uid://c8w3wtb7d3mf1" path="res://Resources/Sprites/heart.png" id="5_jp47n"]
+[ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="6_m14cc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ugk2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2tn5"]
+atlas = ExtResource("5_jp47n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmxst"]
+atlas = ExtResource("5_jp47n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfrfm"]
+atlas = ExtResource("5_jp47n")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joonv"]
+atlas = ExtResource("5_jp47n")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf48x"]
+atlas = ExtResource("5_jp47n")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tput"]
+atlas = ExtResource("5_jp47n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbkai"]
+atlas = ExtResource("5_jp47n")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_247f6"]
+atlas = ExtResource("5_jp47n")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_773ce"]
+atlas = ExtResource("5_jp47n")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_afxs1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2tn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmxst")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_bfrfm")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_joonv")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_gf48x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tput")
+}],
+"loop": false,
+"name": &"Beat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbkai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_247f6")
+}, {
+"duration": 100.0,
+"texture": SubResource("AtlasTexture_773ce")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h64ac"]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(6, 6)
+script = ExtResource("1_yjgty")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3ugk2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -0.833333
+offset_top = -95.3333
+offset_right = 39.1667
+offset_bottom = -55.3333
+
+[node name="Health" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 51.0
+offset_top = 32.0
+offset_right = 141.0
+offset_bottom = 55.0
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("5_hlbwu")
+text = "Health"
+
+[node name="Mana" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ManaBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = -30.3334
+offset_right = 98.0
+offset_bottom = 9.66662
+value = 100.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = -139.5
+offset_top = 16.6666
+offset_right = -75.5
+offset_bottom = 56.6666
+value = 100.0
+texture_under = ExtResource("3_4jo3l")
+texture_progress = ExtResource("4_mfmvr")
+
+[node name="Heart" type="AnimatedSprite2D" parent="Control/HealthBar"]
+position = Vector2(-2.50006, 8)
+sprite_frames = SubResource("SpriteFrames_afxs1")
+animation = &"Beat"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("6_m14cc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_h64ac")
+
+[node name="Timer" type="Timer" parent="Hurtbox"]
+wait_time = 0.5
+
+[connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="Hurtbox" method="_on_area_exited"]
+[connection signal="timeout" from="Hurtbox/Timer" to="Hurtbox" method="_on_timer_timeout"]

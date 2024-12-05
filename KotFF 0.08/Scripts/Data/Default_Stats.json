@@ -1,0 +1,7 @@
+{
+	"health" : 100.0,
+	"max_health" : 100.0,
+	"mana" : 50.0,
+	"speed" : 500.0,
+	"class" : "none",
+}
