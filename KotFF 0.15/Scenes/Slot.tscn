@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://bdsba4gdyverq"]
+
+[ext_resource type="Script" path="res://Scripts/Slot.gd" id="1_vhse4"]
+[ext_resource type="Texture2D" uid="uid://bht15k57dmqmd" path="res://Resources/Sprites/Items/Empty.png" id="2_bo1cv"]
+[ext_resource type="Texture2D" uid="uid://lbjqxtdb08w8" path="res://Resources/Sprites/Items/Lemon.png" id="3_t1h30"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mb8ng"]
+atlas = ExtResource("3_t1h30")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d2dp"]
+atlas = ExtResource("3_t1h30")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3do0j"]
+atlas = ExtResource("3_t1h30")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2w1f"]
+atlas = ExtResource("3_t1h30")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc3pc"]
+atlas = ExtResource("3_t1h30")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x8dpd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mb8ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d2dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3do0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2w1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc3pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mb8ng")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Slot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1792.0
+offset_bottom = -952.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vhse4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+scale = Vector2(4, 4)
+texture = ExtResource("2_bo1cv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(64, 64)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_x8dpd")
+frame = 5
+frame_progress = 1.0
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
