@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxn1opgo5gnsp"]
+
+[ext_resource type="Script" path="res://Scripts/Death.gd" id="1_4q42f"]
+[ext_resource type="Theme" uid="uid://dchsfnmpldp4" path="res://Resources/Themes/Menu_Button_Bold.tres" id="1_qmukp"]
+
+[node name="Death" type="Node2D"]
+script = ExtResource("1_4q42f")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+offset_top = 831.0
+offset_right = 960.0
+offset_bottom = 871.0
+scale = Vector2(2, 2)
+ratio = 0.001
+
+[node name="Main Menu" type="Button" parent="AspectRatioContainer"]
+layout_mode = 2
+theme = ExtResource("1_qmukp")
+text = "Main Menu"
+
+[connection signal="pressed" from="AspectRatioContainer/Main Menu" to="." method="_on_main_menu_pressed"]
